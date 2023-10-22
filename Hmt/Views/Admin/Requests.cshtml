@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Hmt.Models.Request>
+
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-lg conainer-fluid">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center" style="margin-top:50px">Requests</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+
+            @*<p class="btn btn-primary">
+                    @Html.ActionLink("Create New", "Create")
+                </p>*@
+            <table class="table table-responsive table-borderl" style="margin-top:70px">
+                <thead style="background:#17a2b8;color:white">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Status @*@Html.DisplayNameFor(model => model.req_status)*@
+                        </th>
+                        <th>
+                            Amount @*@Html.DisplayNameFor(model => model.req_amount)*@
+                        </th>
+                        <th>
+                            Date/Time @*@Html.DisplayNameFor(model => model.req_date)*@
+                        </th>
+                        <th>
+                            First name @*@Html.DisplayNameFor(model => model.Employee.emp_fname)*@
+                        </th>
+                        <th>
+                            Last name @*@Html.DisplayNameFor(model => model.Employee.emp_fname)*@
+                        </th>
+                        <th>
+                            Item @*@Html.DisplayNameFor(model => model.Stationary.pro_name)*@
+                        </th>
+                        <th colspan="2" class="text-center">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+
+                @if (Model != null && Model.Count() > 0)
+                {
+
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(Modelitem => item.req_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.req_status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.req_amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.req_date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.emp_fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.emp_lname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationary.pro_name)
+                            </td>
+                            <td>
+                                <p>@Html.ActionLink("Status", "RequestEdit", new { id = item.req_id }, new { @class = "btn btn-success" })</p>
+                                @*@Html.ActionLink("Details", "Details", new { id = item.req_id }) |*@
+                            </td>
+                            <td>
+                                <p>@Html.ActionLink("Reject", "RequestDelete", new { id = item.req_id }, new { @class = "btn btn-danger" })</p>
+                            </td>
+
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center pt-5">No Requests right now</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+    </div>
+
+</div>
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+<link href="~/Content/css/styles.css" rel="stylesheet" />

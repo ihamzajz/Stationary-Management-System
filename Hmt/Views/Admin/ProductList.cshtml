@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Hmt.Models.Stationary>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center" style="margin-top:50px">Products</h1>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center" style="margin-top:80px">
+        <div class="col-auto">
+
+
+
+            @*class="btn btn-primary" style="text-decoration:none;color:white"*@
+            @*<a class="btn btn-primary" href="@Url.Action("UserAdd","UserAdd")">Create</a>*@
+            @*@Html.ActionLink("Create", "UserAdd", new { @class = "btn btn-danger" })*@
+            <a style="margin-bottom:20px;" class="btn btn-info" href="@Url.Action("ProductAdd","Admin")">Create</a>
+
+
+            <table class="table table-responsive table-borderl" style="margin-top:5px">
+
+                <tr style="background:#17a2b8;color:white">
+                    <th>
+                        @Html.DisplayNameFor(model => model.pro_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pro_description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pro_price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pro_image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pro_stock)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cat_id)
+                    </th>
+                    <th colspan="2" class="text-center">
+                        Action
+                    </th>
+
+
+
+                </tr>
+
+
+                @if (Model != null && Model.Count() > 0)
+                {
+
+
+
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pro_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pro_description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pro_price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pro_image)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pro_stock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cat_id)
+                            </td>
+
+                            <td>
+                                <p> @Html.ActionLink("Edit", "ProductEdit", new { id = item.pro_id }, new { @class = "btn btn-success" })</p>
+
+                                @*@Html.ActionLink("Edit", "UserEdit", new { id = item.emp_id }) |*@
+
+                            </td>
+
+                            @*<p>@Html.ActionLink("Delete", "UserDelete", new { id = item.emp_id }, new { @class = "btn btn-danger" })</p>*@
+                            @*<p> @Html.ActionLink("Delete", "ProductDelete", new { id = item.pro_id }, new { @class = "btn btn-danger" })</p>*@
+
+                        </tr>
+                    }
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="6" class=" pt-5">No Data Available . Please Add Data By CLick On Create Button</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+<link href="~/Content/css/styles.css" rel="stylesheet" />

@@ -1,0 +1,111 @@
+﻿@model Hmt.Models.Stationary
+@{
+    ViewBag.Title = "User Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center" style="margin-top:50px;margin-bottom:50px">Add Product</h1>
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-lg-6">
+
+
+            @if (ViewBag.productadd != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.productadd
+                </div>
+            }
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("ProductAdd", "Admin", FormMethod.Post))
+            {
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="text-left" style="width:120px">
+                            @Html.DisplayNameFor(model => model.pro_name)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.pro_name, null, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.pro_name, "", new { @class = "text-danger" })
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">
+                            @Html.DisplayNameFor(model => model.pro_description)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.pro_description, null, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.pro_description, "", new { @class = "text-danger" })
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">
+                            @Html.DisplayNameFor(model => model.pro_price)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.pro_price, null, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.pro_price, "", new { @class = "text-danger" })
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">
+                            @Html.DisplayNameFor(model => model.pro_image)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.pro_image, null, new { @class = "form-control", autocomplete = "off" })
+                            <small>Paste image in Hmt/Content/images folder and type its name here</small>
+                            @Html.ValidationMessageFor(model => model.pro_image, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">
+                            @Html.DisplayNameFor(model => model.cat_id)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.cat_id, null, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.cat_id, "", new { @class = "text-danger" })
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input style="margin-top:10px" type="submit" value="Create" class="btn btn-success" />
+                            <a style="margin-top:10px" class="btn btn-info" href="@Url.Action("ProductList","Admin")">Back to list</a>
+
+                        </td>
+                    </tr>
+                </table>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+<link href="~/Content/css/styles.css" rel="stylesheet" />

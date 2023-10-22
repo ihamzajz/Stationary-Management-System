@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Hmt.Models.Stationary>
+
+@{
+    ViewBag.Title = "stationeries";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center"style="margin-top:130px;margin-bottom:80px">Products</h2>
+            </div>
+        </div>
+
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <a href="@Url.Action("Details","User",new { id = item.pro_id})" class="fh5co-card-item image-popup">
+                        <figure>
+                            <div class="overlay"><i class="fa-solid fa-plus style="color:#17a2b8;font-weight:100;font-size:15px"></i></div>
+                            <img src="~/Content/Images/@item.pro_image" alt="Image" class="img-responsive w-100 h-100">
+                        </figure>
+                        <div class="fh5co-text">
+                            <h2>@item.pro_name</h2>
+                            <p>Price: @item.pro_price</p>
+                            <p><span class="btn btn-info">Quick Views</span></p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js" integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="~/Content/css/icomoon.css" rel="stylesheet" />
+<link href="~/Content/css/magnific-popup.css" rel="stylesheet" />
+<link href="~/Content/css/themify-icons.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+<link href="~/Content/css/userpanel.css" rel="stylesheet" />
+<link href="~/Content/css/styles.css" rel="stylesheet" />
+
+
+

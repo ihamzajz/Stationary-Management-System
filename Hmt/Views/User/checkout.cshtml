@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Hmt.Models.Cart>
+    @{
+    ViewBag.Title = "checkout";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+
+<div class="container">
+    <h2 style="margin-top:150px" class="text-center">Cart</h2>
+
+
+    <table class="table table-bordered table-striped text-center" style="margin-top:60px">
+        <tr style="background:#17a2b8;color:white">
+            <td>
+                Product
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Quantity
+            </td>
+            <td>
+                Price
+            </td>
+
+        </tr>
+
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/@item.pro_image" width="50" height="50" />
+                    </td>
+                    <td>@item.pro_name</td>
+                    <td>@item.pro_stock</td>
+                    <td>@item.pro_price</td>
+                </tr>
+            }
+
+        }
+
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center pt-5">Your Cart is empty.</td>
+            </tr>
+        }
+
+    </table>
+    <h5 class="text-center py-3">
+        TOTAL: @ViewBag.total
+    </h5>
+
+    <div class="text-center">
+        <a href="@Url.Action("OrderNow","User")" class="btn btn-success">Send Request</a>
+    </div>
+
+
+</div>
+
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />

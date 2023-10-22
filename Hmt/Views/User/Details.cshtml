@@ -1,0 +1,58 @@
+﻿@model Hmt.Models.Stationary
+@{
+    /**/
+
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<script src="~/Content/js/main.js"></script>
+
+@using (Html.BeginForm())
+{
+
+
+
+
+
+    <div class="container">
+        <div class="row" style="margin-top:200px">
+            <div class="col-md-6 ">
+                <div>
+                    <img src="~/Content/Images/@Model.pro_image" class="img-fluid w-100 h-100" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-5 px-4 pt-4 pt-md-0">
+
+                <h2 class="pp-h2"> @Model.pro_name</h2>
+                <p class="pp-p pt-1">Description: @Model.pro_description</p>
+                <p class="pp-price">RS. @Model.pro_price</p>
+
+                <p>
+                    <input type="number" name="qty" value="1" min="1" max="10" class="form-control w-25 font-weight-bold" />
+                </p>
+
+
+
+
+
+                <p>
+                    <input type="submit" value="Add to request" class="btn btn-info w-75" />
+                </p>
+                <p>
+                    <a class="btn btn-outline-info w-75" href="@Url.Action("stationeries","User")">Back to products</a>
+                    @*<input type="submit" value="Back to stationry" class="btn btn-outline-dark" />*@
+                </p>
+
+
+            </div>
+        </div>
+        <hr style="background:#17a2b8;height:1px" />
+    </div>
+}
+
+
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+<link href="~/Content/css/styles.css" rel="stylesheet" />

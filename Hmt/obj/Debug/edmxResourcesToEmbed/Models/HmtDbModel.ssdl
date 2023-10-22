@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HmtDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="admin_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_lname" Type="varchar" MaxLength="50" />
+    <Property Name="admin_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_username" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cat_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_lname" Type="varchar" MaxLength="50" />
+    <Property Name="emp_username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_designation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_city" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_qualification" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="req_id" />
+    </Key>
+    <Property Name="req_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="req_status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="req_amount" Type="int" Nullable="false" />
+    <Property Name="req_date" Type="datetime" Nullable="false" />
+    <Property Name="emp_id" Type="int" Nullable="false" />
+    <Property Name="pro_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stationary">
+    <Key>
+      <PropertyRef Name="pro_id" />
+    </Key>
+    <Property Name="pro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pro_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pro_image" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pro_description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pro_price" Type="int" Nullable="false" />
+    <Property Name="pro_stock" Type="int" Nullable="false" />
+    <Property Name="cat_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Request__emp_id__29572725">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__pro_id__2D27B809">
+    <End Role="Stationary" Type="Self.Stationary" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stationary">
+        <PropertyRef Name="pro_id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="pro_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Stationar__cat_i__2C3393D0">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Stationary" Type="Self.Stationary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="Stationary">
+        <PropertyRef Name="cat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HmtDbModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stationary" EntityType="Self.Stationary" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Request__emp_id__29572725" Association="Self.FK__Request__emp_id__29572725">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__pro_id__2D27B809" Association="Self.FK__Request__pro_id__2D27B809">
+      <End Role="Stationary" EntitySet="Stationary" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Stationar__cat_i__2C3393D0" Association="Self.FK__Stationar__cat_i__2C3393D0">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Stationary" EntitySet="Stationary" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

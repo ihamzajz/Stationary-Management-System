@@ -1,0 +1,58 @@
+﻿@model Hmt.Models.Employee
+@{
+    ViewBag.Title = "UserLogin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section style="margin-top:180px">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6">
+
+                @using (Html.BeginForm("UserLogin", "Home", FormMethod.Post))
+                {
+                   <div style="border-top: 5px solid #17a2b8;border-left: 5px solid #17a2b8; padding-top:15px;padding-left:15px">
+                        <h2 class="text-center py-3">User Login</h2>
+
+                        <table class="table table-borderless">
+                            <tr>
+                                <td class="text-left" style="width:120px">
+                                    @Html.LabelFor(model => model.emp_username)
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.emp_username, new { @class = "form-control", autocomplete = "off" })
+                                    @Html.ValidationMessageFor(model => model.emp_username, "", new { @class = "text-danger" })
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left" style="width:120px">
+                                    @Html.LabelFor(model => model.emp_password)
+                                </td>
+                                <td>
+                                    @Html.EditorFor(model => model.emp_password, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.emp_password, "", new { @class = "text-danger" })
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Login" name="login" class="btn btn-info w-100" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<link href="~/Content/css/styles.css" rel="stylesheet" />

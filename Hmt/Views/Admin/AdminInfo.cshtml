@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Hmt.Models.Admin>
+
+@{
+    ViewBag.Title = "Admin Info";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center" style="margin-top:50px">Admins Info</h1>
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center" style="margin-top:80px">
+
+        <div class="col-auto">
+
+            @*<p> @Html.ActionLink("Create", "AdminAdd", new { @class = "btn btn-danger" })</p>*@
+
+            <a class="btn btn-info" href="@Url.Action("AdminAdd","Admin")">Create</a>
+
+            <table class="table table-responsive table-borderl" style="margin-top:30px">
+                <tr style="background:#17a2b8;color:white">
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.admin_fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.admin_lname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.admin_email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.admin_username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.admin_password)
+                    </th>
+                    <th colspan="2" class="text-center">
+                        Actions
+                    </th>
+
+                </tr>
+
+                @if (Model != null && Model.Count() > 0)
+                {
+
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.admin_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.admin_fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.admin_lname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.admin_email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.admin_username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.admin_password)
+                            </td>
+                            <td>
+                                @*<a class="btn btn-success" href="@Url.Action("AdminEdit","Admin")">Edit</a>*@
+                                <p> @Html.ActionLink("Edit", "AdminEdit", new { id = item.admin_id }, new { @class = "btn btn-success" })</p>
+
+                            </td>
+                            <td>
+                                @*<input type="submit" value="Delete" class="btn btn-danger" href="@Url.Action("AdminDelete","Admin")">*@
+                                <p>@Html.ActionLink("Delete", "AdminDelete", new { id = item.admin_id }, new { @class = "btn btn-danger" })</p>
+
+                            </td>
+
+
+                        </tr>
+                    }
+
+
+
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center pt-5">No Data Available . Please Add Data By CLick On Create Button</td>
+                    </tr>
+                }
+            </table>
+
+
+        </div>
+    </div>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+    <link href="~/Content/css/styles.css" rel="stylesheet" />

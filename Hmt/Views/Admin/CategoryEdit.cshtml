@@ -1,0 +1,59 @@
+﻿@model Hmt.Models.Category
+@{
+    ViewBag.Title = "Edit Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center" style="margin-top:50px;margin-bottom:50px">Edit Category</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            @using (Html.BeginForm("CategoryEdit", "Admin", FormMethod.Post))
+            {
+                <table class="table table-borderless">
+
+                    @*<tr>
+                            <td class="text-left" style="width:120px">
+                                @Html.Label("Id")
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(a => a.cat_id, null, new { @class = "form-control" })
+                            </td>
+                        </tr>*@
+                    <tr>
+                        <td class="text-left" style="width:120px">
+                            @Html.Label("Name")
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(a => a.cat_name, null, new { @class = "form-control", autocomplete = "off", required = "required" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Save Changes" class="btn btn-success" />
+                            <a class="btn btn-info" href="@Url.Action("CategoryList","Admin")">Back to list</a>
+                        </td>
+                    </tr>
+                </table>
+
+            }
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+<link href="~/Content/css/adminpanel.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/styles.css" rel="stylesheet" />
